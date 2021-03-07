@@ -28,6 +28,9 @@
         <a class="btn-primary" @click="scrollToAnchorPoint('forth')">
             if文 list dict
         </a>
+        <a class="btn-primary" @click="scrollToAnchorPoint('fifth')">
+            for文
+        </a>
 
 
         ここにpythonのコードを集約しておく
@@ -95,6 +98,41 @@
                 </pre>
             </div>
         </div>
+        <div class="content" ref="fifth">
+             {{fifth}}
+            <div class="code-frame" data-lang="text">
+                配列などは、複数の情報をもつ
+                一つずつ取り出してやらないといけない
+                <pre>
+                    # 書き方
+                    for 変数名 in イテラブルオブジェクト:
+                        処理
+
+                    for i in range(10):
+                        print(i)
+
+                    #範囲指定
+                    for i in range(1,10):
+                        #print(i)
+                </pre>
+                <pre>
+                    list = ['Alice', 'Bob', 'Charlie']
+                    for name in list:
+                        print(name)
+                </pre>
+                <pre>
+                    name_list = ['yamada','sato','kato','nakano','kogane','iwao','gotou','matsumoto']
+                    # さんをつけて出力
+                    for i in name_list:
+                        print(i+'さん')
+                </pre>
+                <pre>
+                    data_list = {'Google':[{'youtube':'ユーチューブ','chromebook':'クロームブック','android':'アンドロイド'}],'Apple':[{'macbook':'マックブック','applewatch':'アップルウォッチ'}],'Amazon':[{'Amazon':'アマゾン','AWS':'アマゾンウェブサービス'}],'Netflix':[],'Microsoft':[]}
+                    # これはlistとdictの混合形 これからこんな形のものがしょっちゅう出てくる
+                </pre>
+            </div>
+        </div>
+        
     </div> <!-- app-->
 </body>
 </html>
