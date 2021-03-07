@@ -4,9 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-scrollto"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="vue-scroll.js" defer></script>
 </head>
 <body>
-    ここにpythonのコードを集約しておく
-    
+    <!-- <div class="code-frame" data-lang="text">
+        <pre>
+        </pre>
+    </div> -->
+    <div id="app">
+        公式
+        https://docs.python.org/ja/3/tutorial/
+        ここから目次
+        <a class="btn-primary" @click="scrollToAnchorPoint('second')">
+            変数 型
+        </a>
+        <a class="btn-primary" @click="scrollToAnchorPoint('third')">
+            演算子 比較演算子 Bool演算子
+        </a>
+        <a class="btn-primary" @click="scrollToAnchorPoint('forth')">
+            if文 list dict
+        </a>
+
+
+        ここにpythonのコードを集約しておく
+        <div class="code-frame" data-lang="text">
+                <pre>
+                    name = 'python君'
+                    id = 2
+                    print(name+str(2))
+                </pre>
+        </div>
+
+        <div class="content" ref="second">
+            {{second}}
+            <div class="code-frame" data-lang="text">
+                <pre>
+                    name = 'yamada'
+                    id = 2
+                </pre>
+            </div>
+            型の変換
+            <div class="code-frame" data-lang="text">
+                <pre>
+                    str()  #strに変換
+                    int()  #intに変換
+
+                    #型の連結
+                    name + str(id)
+                </pre>
+            </div>
+        </div>
+        <div class="content" ref="third">
+            {{third}}
+            <div class="code-frame" data-lang="text">
+                <pre>
+                    + - * /    (足す、引く、かける、割る)
+                    % ** //    (余り、乗算、切り捨て除算)
+                </pre>
+            </div>
+            切り捨て除算は
+                10 ÷ 3 = 3 .3333333333333335の時 3になる(余りを除く)
+            </br>
+            Bool演算子
+            <div class="code-frame" data-lang="text">
+                <pre>True False</pre>
+            </div>
+            比較演算子
+            http://www.tohoho-web.com/python/operators.html
+                <div class="code-frame" data-lang="text">
+                    <pre>
+                          < > <= >= == 
+                        1 < 2  #2未満
+                        1 > 2  #2超過
+                        1 <= 2 #2以下
+                        1 >= 2 #2以上
+                        1 == 2 #2と等しい
+                    </pre>
+                </div>
+        </div>
+        <div class="content" ref="forth">
+             {{forth}}
+            <div class="code-frame" data-lang="text">
+                <pre>
+                    + - * /    (足す、引く、かける、割る)
+                    % ** //    (余り、乗算、切り捨て除算)
+                </pre>
+            </div>
+        </div>
+    </div> <!-- app-->
 </body>
 </html>
