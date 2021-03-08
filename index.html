@@ -93,8 +93,18 @@
              {{forth}}
             <div class="code-frame" data-lang="text">
                 <pre>
-                    + - * /    (足す、引く、かける、割る)
-                    % ** //    (余り、乗算、切り捨て除算)
+                    number = 2
+                    if number == 1:
+                        print('1です')
+                    elif number == 2:
+                        print('2です')
+                    else:
+                        print('それ以外です')
+
+                    lists = [101,102,103,104,105]
+                        => lists[0]
+                    dict = {'key':'value','id':11,'name':'yamada'}
+                        =>dict['name']
                 </pre>
             </div>
         </div>
@@ -135,6 +145,34 @@
                 list.remove(x)
                 リスト中で x と等しい値を持つ最初の要素を削除します。該当する要素がなければ ValueError が送出されます。
             </div>
+
+            ライブラリとは、機能群 のこと
+            google driveにアクセスする機能
+            excelシートの情報を取得してくれる機能
+
+            それを借りるのがライブラリ
+        </div>
+
+        <div class="content" ref="part2_first">
+            {{part2_first}}
+            <div class="code-frame" data-lang="text">
+                
+                <pre>
+                    from google.colab import drive
+                    drive.mount('/content/drive/')
+                    import openpyxl
+                    import pandas as pd
+                    import glob
+                    import re
+                    import_file_path = '/content/drive/MyDrive/Colab Notebooks/sampledata1.xlsx'
+                    data_sheet_list = 'list'
+                    data_sheet_name = 'name'
+                    category_sheet_name = 'category'
+                    data_employee = pd.read_excel(import_file_path, 0)
+
+                    data_employee
+                </pre>
+                ここからは、dataの使い方について、学ぶ+ フローチャートについて学ぶ
         </div>
         
     </div> <!-- app-->
