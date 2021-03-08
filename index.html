@@ -15,7 +15,9 @@
         <pre>
         </pre>
     </div> -->
+    
     <div id="app">
+    
         <p><a href="contents/sample1.xlsx" download="sample1.xlsx">sample1.xlsxファイルをダウンロード</a></p>
         公式
         https://docs.python.org/ja/3/tutorial/
@@ -140,6 +142,16 @@
                 <pre>
                     data_list = {'Google':[{'youtube':'ユーチューブ','chromebook':'クロームブック','android':'アンドロイド'}],'Apple':[{'macbook':'マックブック','applewatch':'アップルウォッチ'}],'Amazon':[{'Amazon':'アマゾン','AWS':'アマゾンウェブサービス'}],'Netflix':[],'Microsoft':[]}
                     # これはlistとdictの混合形 これからこんな形のものがしょっちゅう出てくる
+                    # data_list['Google'] dict
+                    # data_list['Google'][0] list
+                    # data_list['Google'][0]['youtube'] dict
+
+                    ちなみにlistだけではなく、dictもforで回すことが可能
+                    その際は、keyが取得できる
+                    例)
+                    for i in data_list:
+                        print(i)
+                        => Google Apple Amazon Netflix Microsoft
                 </pre>
                 listについてもう少し
                 list.append
