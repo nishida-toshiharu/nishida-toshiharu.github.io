@@ -5,6 +5,7 @@ var vi = new Vue({
     third: '演算子 比較演算子',
     forth : 'if文 list dict',
     fifth: 'for文 繰り返し',
+    sixth: 'is not !=',
     part2_first: 'sample_dataのやりとり'
   },
   methods: {

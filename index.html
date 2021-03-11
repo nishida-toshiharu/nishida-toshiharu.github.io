@@ -69,12 +69,14 @@
             <div class="code-frame" data-lang="text">
                 <pre>
                     + - * /    (足す、引く、かける、割る)
-                    % ** //    (余り、乗算、切り捨て除算)
+                    % ** //    (余り、冪乗(べきじょう)、切り捨て除算)
                 </pre>
             </div>
             切り捨て除算は
                 10 ÷ 3 = 3 .3333333333333335の時 3になる(余りを除く)
             </br>
+
+            <!-- ///////////////////////is is not !=は忘れているかもしれない！！https://tokyofreelance.jp/question/ -->
             Bool演算子
             <div class="code-frame" data-lang="text">
                 <pre>True False</pre>
@@ -164,6 +166,33 @@
             excelシートの情報を取得してくれる機能
 
             それを借りるのがライブラリ
+        </div>
+
+        <div class="content" ref="sixth">
+            <div class="code-frame" data-lang="text">
+                is is not !=のお話し
+            <pre>
+                num  = 1
+                num1 = 1
+                name = 'yamada'
+                name1 = 'yamada'
+                num_list = [100,101,102]
+                num_list1 = [100,101,102]
+                ---------------------
+                
+                num != num1  # ==の逆
+                
+                num == num1   =>True
+                num is num1   =>True
+                name == name1 =>True
+                name is name1 =>True
+                num_list == num_list1
+                num_list is num_list1 =>False
+
+                #intやstrのような単体で使うものであれば関係はないが、
+                #listやdictのようなオブジェクト(データの塊)を比べる際にはこのような挙動になる
+            </pre>
+            </div>  
         </div>
 
         <div class="content" ref="part2_first">
