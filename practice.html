@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-scrollto"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="vue-scroll.js" defer></script>
+</head>
+<body>
+    <!-- <div class="code-frame" data-lang="text">
+        <pre>
+        </pre>
+    </div> -->
+    
+    <div id="app">
+    ここは、練習問題をstockする場所
+    とりあえず10問を目標
+    20問は作ろう
+    答えはあくまで模範回答です。違う書き方はたくさんありますので、違う書き方でも結果が同じであれば正解です！
+        公式
+        https://docs.python.org/ja/3/tutorial/
+        ここから目次
+        <a class="btn-primary" @click="scrollToAnchorPoint('second')">
+            1問目
+        </a>
+        <a class="btn-primary" @click="scrollToAnchorPoint('third')">
+            2問目 fizz buzz
+        </a>
+
+
+        ここにpythonのコードを集約しておく
+        <div class="code-frame" data-lang="text">
+                <pre>
+                    1問目
+                    name = '山田君は'
+                    pay = '900'
+                    message = '円払う'
+                    以上の変数を用いて、
+                「山田君は1000円払う」と出力してください。
+                答え： name + str(int(pay) + 100)+ message
+                </pre>
+        </div>
+        <div class="code-frame" data-lang="text">
+            <pre>
+                2問目 fizz buzz
+                1から100までの数字を出力するプログラミングを書いてください。
+                ただし、数字が3の倍数の時は数字の代わりにFizzと出力し、5の倍数の時は数字の代わりにBuzzと出力し、
+                3と5の倍数のときは、FizzBuzzと出力すること。
+                答え：
+                for i in range(1, 101):
+                    if i % 3 == 0 and i % 5 == 0:
+                        print("FizzBuzz")
+                    elif i % 3 == 0:
+                        print("Fizz")
+                    elif i % 5 == 0:
+                        print("Buzz")
+                    else:
+                        print(i)
+
+                別解：ここまでできなくて良い(自分もここまでは厳しい..)
+                    end = 100
+                    for i in range(1, end + 1):
+                        print('FizzBuzz'[(4 if i % 3 else 0):(4 if i % 5 else 8)] or i)
+            </pre>
+        </div>
+
+        <div class="code-frame" data-lang="text">
+            3問目
+            <pre>
+                result = []
+                third_question = [100,101,102,103,104,105,106,107,108,109,110]
+                111をthird_questionに入れて、偶数のものだけをresultに入れ、resultを出力してください。
+                回答：
+                result = []
+                third_question = [100,101,102,103,104,105,106,107,108,109,110,111]
+                third_question.append(112)
+                for i in third_question:
+                if i % 2 == 0:
+                    result.append(i)
+                print(result)
+            </pre>
+        </div>
+
+        <div class="code-frame" data-lang="text">
+            <pre>
+                1~40までの数字を出力し、
+                1の位が3の時に、「アホになる」を出力してください。
+                また、可能であれば、10の位が3の時にもアホになってください。
+
+                for i in range(1,41):
+                    if i % 10 == 3:
+                        print('アホになる')
+                    elif i // 10 == 3:
+                        print('アホになる')
+                    else:
+                        print(i)
+            </pre>
+
+        </div>
+
+        <div class="code-frame" data-lang="text">
+            <pre>
+                中上みたいなdataを作成
+                datas = {'id':10,'name':'yamada','age':'20','experience':'7','subordinate':['honda','nakano','hamada']}
+            </pre>
+        </div>
+    </div>  

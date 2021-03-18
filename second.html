@@ -1,1 +1,97 @@
-いえぃ
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-scrollto"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="vue-scroll.js" defer></script>
+</head>
+<body>
+    <div class="code-frame" data-lang="text">
+        <pre>
+            pd.read_excel(import_file_path, sheet_name = data_sheet_list)
+            df_excel = openpyxl.load_workbook(import_file_path)
+            df_sheet = df_excel[data_sheet_list] ## Worksheet 'list'> Worksheet 
+            df_list = []
+            for row in df_sheet.iter_rows(max_row=9):  ## rowの中身(&lt;Cell 'list'.A1>, &lt;Cell 'list'.B1>, &lt;Cell 'list'.C1>, &lt;Cell 'list'.D1>)(&lt;Cell 'list'.A2>, &lt;Cell 'list'.B2>, &lt;Cell 'list'.C2>, &lt;Cell 'list'.D2>)
+            
+                if row[0].row == 1:
+                    header_cells = row
+                else:
+                    row_dic = {}
+                    for k, v in zip(header_cells, row):
+                    row_dic[k.value] = v.value
+                    print(v.value)
+                    df_list.append(row_dic)
+            print(df_list)
+
+            => [{'experience': 7.0, 'id': 0.0, 'name': '中上剛', 'skill': 'フロントエンド'},
+            {'experience': 5.0, 'id': 1.0, 'name': '千田渚', 'skill': 'フロントエンド'},
+            {'experience': 3.0, 'id': 2.0, 'name': '村山茄奈依', 'skill': 'フロントエンド'},
+            {'experience': 7.0, 'id': 3.0, 'name': '助川薫', 'skill': 'バックエンド'},
+            {'experience': 5.0, 'id': 4.0, 'name': '比志秀太郎', 'skill': 'VBA'},
+            {'experience': 2.0, 'id': 5.0, 'name': '西田俊陽', 'skill': 'バックエンド'},
+            {'experience': 10.0, 'id': 6.0, 'name': '松島浩二', 'skill': 'バックエンド'},
+            {'experience': 7.0, 'id': 7.0, 'name': '西山友也', 'skill': 'フロントエンド'}]
+        </pre>
+    </div>
+    <div class="code-frame" data-lang="text">
+        <pre>
+            for row in df_sheet.iter_rows(max_row=9):  # デフォで1から開始 今回は9まで 計1~8まで
+            # print(row[0]) # headerの情報
+            if row[0].row == 1: # 1番上のheaderの情報
+                header_cells = row
+            else: #header以外の情報
+                row_dic = {}
+                for k, v in zip(header_cells, row):
+                # print(v.value) #kはA1~D1のheader vはA2~D9のそれぞれの値
+                row_dic[k.value] = v.value   #v.valueで各々のcellの値を取得することが可能 k.valueはid,name,skill,experience
+                # print(row_dic)
+                # row_dic['id'] = 1
+                # row_dic['name'] ='中上剛'  が行われている
+                df_list.append(row_dic)
+                # print("aaaa")
+
+                # df_list = [{'id': 0.0, 'name': '中上剛', 'skill': 'フロントエンド', 'experience': 7.0}]
+                list = [{'id': 0.0, 'name': '中上剛', 'skill': 'フロントエンド', 'experience': 7.0},{'id': 1.0, 'name': '千田渚', 'skill': 'フロントエンド', 'experience': 5.0}]
+            print(list[0]['name'])
+        </pre>
+        </div>
+        <a href="https://python.civic-apps.com/zip-enumerate/">zip関数について</a>
+    </div>
+    <div>
+        フローチャート
+        参考url: https://ferret-plus.com/7102
+
+        プログラムを書く際に、pythonのコードではなく、
+        プログラミングを知らない人でも理解ができるようにコードの内容を図式化したもの
+
+        これが描けるようになることで、仕様の確認ができたりする。
+        コードを書くまえに、preコードを書くみたいな感覚
+
+        細かく書いていくと分解する処理、分解する考え方が身に付けられて
+        論理的思考が身に付く。
+
+        素振りはこうやって、ブンってやるんだ
+        素振りは、グリップを左手で優しく握り、体重は左足を前にかけて...
+        後者がわかりやすいですよね。
+
+        
+        <pre>
+            例）
+            寿司を握る時のフローチャート
+            <img src="https://ferret.akamaized.net/images/591982bafafbd87def0007f2/original.png?1494844086">
+        </pre>
+
+        自販機の例を出して、
+        自動レジのフローを作ってもらう
+        もしくは、自分の朝起きてからの活動をフローにしてもいいかもしれない
+        フローのspred上での作り方
+        https://kodomo-mirai-algo.hatenablog.jp/entry/2019/08/09/Google_%E3%82%B9%E3%83%97%E3%83%AC%E3%83%83%E3%83%89%E3%82%B7%E3%83%BC%E3%83%88%E3%81%A7%E3%83%95%E3%83%AD%E3%83%BC%E3%83%81%E3%83%A3%E3%83%BC%E3%83%88%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99
+    </div>
+</body>
+</html> 
