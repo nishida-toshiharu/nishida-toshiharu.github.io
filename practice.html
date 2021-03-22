@@ -41,7 +41,14 @@
                     message = '円払う'
                     以上の変数を用いて、
                 「山田君は1000円払う」と出力してください。
-                答え： name + str(int(pay) + 100)+ message
+                <ul class="list">
+                    <li v-for="list in listlabel" class="list-item">
+                      <div v-bind:class="{active:active===list}" @click="dropdown(list)">{{list}}</div>
+                      <ul v-if="active===list">
+                          答え： name + str(int(pay) + 100)+ message
+                      </ul>
+                    </li>
+                  </ul>
                 </pre>
         </div>
         <div class="code-frame" data-lang="text">
@@ -50,21 +57,29 @@
                 1から100までの数字を出力するプログラミングを書いてください。
                 ただし、数字が3の倍数の時は数字の代わりにFizzと出力し、5の倍数の時は数字の代わりにBuzzと出力し、
                 3と5の倍数のときは、FizzBuzzと出力すること。
-                答え：
-                for i in range(1, 101):
-                    if i % 3 == 0 and i % 5 == 0:
-                        print("FizzBuzz")
-                    elif i % 3 == 0:
-                        print("Fizz")
-                    elif i % 5 == 0:
-                        print("Buzz")
-                    else:
-                        print(i)
-
-                別解：ここまでできなくて良い(自分もここまでは厳しい..)
-                    end = 100
-                    for i in range(1, end + 1):
-                        print('FizzBuzz'[(4 if i % 3 else 0):(4 if i % 5 else 8)] or i)
+                <ul class="list">
+                    <li v-for="list in listlabel" class="list-item">
+                      <div v-bind:class="{active:active===list}" @click="dropdown(list)">{{list}}</div>
+                      <ul v-if="active===list">
+                            答え：
+                            for i in range(1, 101):
+                                if i % 3 == 0 and i % 5 == 0:
+                                    print("FizzBuzz")
+                                elif i % 3 == 0:
+                                    print("Fizz")
+                                elif i % 5 == 0:
+                                    print("Buzz")
+                                else:
+                                    print(i)
+            
+                            別解：ここまでできなくて良い(自分もここまでは厳しい..)
+                                end = 100
+                                for i in range(1, end + 1):
+                                    print('FizzBuzz'[(4 if i % 3 else 0):(4 if i % 5 else 8)] or i)
+                      </ul>
+                    </li>
+                  </ul>
+                
             </pre>
         </div>
 
@@ -74,14 +89,21 @@
                 result = []
                 third_question = [100,101,102,103,104,105,106,107,108,109,110]
                 111をthird_questionに入れて、偶数のものだけをresultに入れ、resultを出力してください。
-                回答：
-                result = []
-                third_question = [100,101,102,103,104,105,106,107,108,109,110,111]
-                third_question.append(112)
-                for i in third_question:
-                if i % 2 == 0:
-                    result.append(i)
-                print(result)
+                <ul class="list">
+                    <li v-for="list in listlabel" class="list-item">
+                      <div v-bind:class="{active:active===list}" @click="dropdown(list)">{{list}}</div>
+                      <ul v-if="active===list">
+                    回答：
+                    result = []
+                    third_question = [100,101,102,103,104,105,106,107,108,109,110,111]
+                    third_question.append(112)
+                    for i in third_question:
+                    if i % 2 == 0:
+                        result.append(i)
+                    print(result)
+                    </ul>
+                    </li>
+                </ul>
             </pre>
         </div>
 
@@ -90,22 +112,57 @@
                 1~40までの数字を出力し、
                 1の位が3の時に、「アホになる」を出力してください。
                 また、可能であれば、10の位が3の時にもアホになってください。
-
-                for i in range(1,41):
-                    if i % 10 == 3:
-                        print('アホになる')
-                    elif i // 10 == 3:
-                        print('アホになる')
-                    else:
-                        print(i)
+                <ul class="list">
+                    <li v-for="list in listlabel" class="list-item">
+                      <div v-bind:class="{active:active===list}" @click="dropdown(list)">{{list}}</div>
+                      <ul v-if="active===list">
+                        for i in range(1,41):
+                            if i % 10 == 3:
+                                print('アホになる')
+                            elif i // 10 == 3:
+                                print('アホになる')
+                            else:
+                                print(i)
+                        </ul>
+                    </li>
+                </ul>
             </pre>
 
         </div>
 
         <div class="code-frame" data-lang="text">
             <pre>
-                中上みたいなdataを作成
+                dataを作成
                 datas = {'id':10,'name':'yamada','age':'20','experience':'7','subordinate':['honda','nakano','hamada']}
             </pre>
         </div>
+
+        <div class="code-frame" data-lang="text">
+            <pre>
+                閏年を考える問題
+                関数 leap_year()を作成
+                引数に西暦の数字を入れて、
+                西暦が出力されるようにしてください。
+                ただし、閏年の時だけ「閏年です」と出力されるようにしてください。
+
+                <ul class="list">
+                    <li v-for="list in listlabel" class="list-item">
+                      <div v-bind:class="{active:active===list}" @click="dropdown(list)">{{list}}</div>
+                      <ul v-if="active===list">
+                    解答：
+                    def leap_year(year):
+                        if year % 100 == 0 and year % 400 != 0:
+                            print(year)
+                        elif year % 4 == 0:
+                            print('うるう年です')
+                        else:
+                            print(year)
+                        </ul>
+                    </li>
+                </ul>
+            </pre>
+        </div>
+
+
+            
     </div>  

@@ -6,12 +6,19 @@ var vi = new Vue({
     forth : 'if文 list dict',
     fifth: 'for文 繰り返し',
     sixth: 'is not !=',
-    part2_first: 'sample_dataのやりとり'
+    part2_first: 'sample_dataのやりとり',
+    listlabel:["解答🔽"],
+      // sublistlabel:["Cloth","Pants","Shoes","Goods"],
+      active:""
   },
   methods: {
     scrollToAnchorPoint(refName) {
       const el = this.$refs[refName]
       el.scrollIntoView({ behavior: 'smooth'})
+    },
+    dropdown(list){
+      console.log(this.active);
+        this.active = this.active===list ? "":list;
     }
   }
 })
