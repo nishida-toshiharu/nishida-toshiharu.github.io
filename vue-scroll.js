@@ -1,6 +1,7 @@
 var vi = new Vue({
   el: '#app',
   data: {
+    first:'初回excelコードsample',
     second: '変数 型',
     third: '演算子 比較演算子',
     forth : 'if文 list dict',

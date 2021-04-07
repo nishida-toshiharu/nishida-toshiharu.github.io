@@ -19,24 +19,102 @@
     <div id="app">
     
         <p><a href="contents/sample1.xlsx" download="sample1.xlsx">sample1.xlsxファイルをダウンロード</a></p>
-        公式
-        https://docs.python.org/ja/3/tutorial/
-        ここから目次
+        
+        <a href="https://docs.python.org/ja/3/tutorial/">python公式</a>
+        
+        全体の目次：<br>
+        excelの振り分けを初回 sample1.xlsx<br>
+        pythonの基礎 文法 構文<br>
+        sampledata1.xlsxを使った、データの取得 変換
+        test<br>
+        フローチャート<br>
+        gcの扱い<br>
+        <h4>各section</h4>
         <a class="btn-primary" @click="scrollToAnchorPoint('second')">
             変数 型
-        </a>
+        </a><br>
         <a class="btn-primary" @click="scrollToAnchorPoint('third')">
             演算子 比較演算子 Bool演算子
-        </a>
+        </a><br>
         <a class="btn-primary" @click="scrollToAnchorPoint('forth')">
             if文 list dict
-        </a>
+        </a><br>
         <a class="btn-primary" @click="scrollToAnchorPoint('fifth')">
             for文
-        </a>
+        </a><br>
 
+        <br>
+        <br>
 
-        ここにpythonのコードを集約しておく
+        <div class="content" ref="first">
+            {{first}}
+            <div class="code-frame" data-lang="text">
+                <pre>
+                    from google.colab import drive
+                    drive.mount('/content/drive')
+                    !pip install openpyxl
+                    import openpyxl
+                    import pandas as pd
+                    import glob
+
+                    import_file_path = '/content/drive/My Drive/Colab Notebooks/sample1.xlsx'
+                    excel_sheet_name = 'Sheet1'
+                    export_file_path = '/content/drive/My Drive/Colab Notebooks/output'
+                    df_order = pd.read_excel(import_file_path, sheet_name = excel_sheet_name)
+                    df_order
+
+                    management_name = df_order['顧客'].unique()
+                    management_name
+                    df_order['担当'] == '鈴木'
+                    df_order[df_order['担当'] == '佐藤']
+
+                    for i in management_name:
+                        df_order_management = df_order[df_order['顧客'] == i]
+                        df_order_management.to_excel(export_file_path+'/'+i+'.xlsx')
+                    
+                    export_file_path = '/content/drive/My Drive/Colab Notebooks/output2'
+                    import_file_path = '/content/drive/My Drive/Colab Notebooks/output'
+                    path = import_file_path + '/'+'*.xlsx'
+                    path
+
+                    file_path = glob.glob(path)
+                    file_path
+
+                    df_concat=pd.DataFrame()
+
+                    for i in file_path:
+                        df_read_excel = pd.read_excel(i)
+
+                    for i in file_path:
+                        df_read_excel = pd.read_excel(i)
+                        df_concat = pd.concat([df_read_excel,df_concat])
+
+                    df_concat
+                    df_drop = df_concat.drop('Unnamed: 0', axis = 1)
+                    df_drop
+
+                    df_sort = df_drop.sort_values(by='案件',ascending=True)
+                    df_sort
+
+                    df_sort.to_excel(export_file_path + '/' + '管理シート.xlsx')
+
+                    workbook = openpyxl.load_workbook(export_file_path + '/' + '管理シート.xlsx')
+                    worksheet = workbook.worksheets[0]
+                    worksheet.delete_cols(1)
+                    workbook.save(export_file_path + '/' + '管理シート.xlsx')
+                </pre>
+            </div>
+            型の変換
+            <div class="code-frame" data-lang="text">
+                <pre>
+                    str()  #strに変換
+                    int()  #intに変換
+
+                    #型の連結
+                    name + str(id)
+                </pre>
+            </div>
+        </div>
         <div class="code-frame" data-lang="text">
                 <pre>
                     name = 'python君'
@@ -44,6 +122,7 @@
                     print(name+str(2))
                 </pre>
         </div>
+        
 
         <div class="content" ref="second">
             {{second}}
@@ -234,27 +313,29 @@
 
                     data_employee
                 </pre>
-                ここからは、dataの使い方について、学ぶ+ フローチャートについて学ぶ
-                2部では .unique()などのexcelに関する関数を用いてデータを取得操作していきます。
-                その際に、関数を使って例を見せてその応用問題を宿題で出していく予定。
-                途中でフローチャートの考え方を説明、fizzbuzzを用いて説明する予定。
-                できたら、何か例を出してフローを考えてもらう。
-                フローが終わり次第、2部の後半 2/15以降のpydriveなどを使った過程が違うけれども、結果は同じようなコードを見てもらう。
-
-                3部では、実践編ということでゴリゴリ書いてもらう
-
-                また、listやif,forなどをふんだんに使っていく予定なので
-                不安な方は、こちらの演習問題で問題なれすることで理解度が深まるかもしれません。(fizz buzzなど)
-                約20問
+                
         </div>
+        <br>
+        ここからは、dataの使い方について、学ぶ+ フローチャートについて学ぶ
+        2部では .unique()などのexcelに関する関数を用いてデータを取得操作していきます。
+        その際に、関数を使って例を見せてその応用問題を宿題で出していく予定。
+        途中でフローチャートの考え方を説明、fizzbuzzを用いて説明する予定。
+        できたら、何か例を出してフローを考えてもらう。
+        フローが終わり次第、2部の後半 2/15以降のpydriveなどを使った過程が違うけれども、結果は同じようなコードを見てもらう。
 
-        <div class="content" ref="part2_second">
+        3部では、実践編ということでゴリゴリ書いてもらう
+
+        また、listやif,forなどをふんだんに使っていく予定なので
+        不安な方は、こちらの演習問題で問題なれすることで理解度が深まるかもしれません。(fizz buzzなど)
+        <!-- <div class="content" ref="part2_second">
             <div class="code-frame" data-lang="text">
                 <pre>
 
                 </pre>
             </div>
-        </div>
+        </div> -->
+        <br>
+        <br>
         <a href="/second.html">2へいこう</a>
     </div> <!-- app-->
 </body>

@@ -1,3 +1,13 @@
+ul {
+    list-style: none;
+    padding-top:0;
+}
+li{
+    list-style-type:none;
+}
+code{
+    background-color: #eee;
+}
 .code-frame{
     background-color: #364549;
     color: #e3e3e3;

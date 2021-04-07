@@ -33,14 +33,13 @@
 
 
         ここにpythonのコードを集約しておく
+        <br><code>  1問目
+            name = '山田君は'
+            pay = '900'
+            message = '円払う'
+            以上の変数を用いて、「山田君は1000円払う」と出力してください。</code>
         <div class="code-frame" data-lang="text">
                 <pre>
-                    1問目
-                    name = '山田君は'
-                    pay = '900'
-                    message = '円払う'
-                    以上の変数を用いて、
-                「山田君は1000円払う」と出力してください。
                 <ul class="list">
                     <li v-for="list in listlabel" class="list-item">
                       <div v-bind:class="{active:active===list}" @click="dropdown(list)">{{list}}</div>
@@ -51,12 +50,13 @@
                   </ul>
                 </pre>
         </div>
+        <code>2問目 fizz buzz
+            1から100までの数字を出力するプログラミングを書いてください。
+            ただし、数字が3の倍数の時は数字の代わりにFizzと出力し、5の倍数の時は数字の代わりにBuzzと出力し、
+            3と5の倍数のときは、FizzBuzzと出力すること。</code>
         <div class="code-frame" data-lang="text">
             <pre>
-                2問目 fizz buzz
-                1から100までの数字を出力するプログラミングを書いてください。
-                ただし、数字が3の倍数の時は数字の代わりにFizzと出力し、5の倍数の時は数字の代わりにBuzzと出力し、
-                3と5の倍数のときは、FizzBuzzと出力すること。
+                
                 <ul class="list">
                     <li v-for="list in listlabel" class="list-item">
                       <div v-bind:class="{active:active===list}" @click="dropdown(list)">{{list}}</div>
@@ -82,13 +82,11 @@
                 
             </pre>
         </div>
-
+        <code> 3問目<br> result = [] <br>
+            third_question = [100,101,102,103,104,105,106,107,108,109,110]
+            111をthird_questionに入れて、偶数のものだけをresultに入れ、resultを出力してください。</code>
         <div class="code-frame" data-lang="text">
-            3問目
             <pre>
-                result = []
-                third_question = [100,101,102,103,104,105,106,107,108,109,110]
-                111をthird_questionに入れて、偶数のものだけをresultに入れ、resultを出力してください。
                 <ul class="list">
                     <li v-for="list in listlabel" class="list-item">
                       <div v-bind:class="{active:active===list}" @click="dropdown(list)">{{list}}</div>
@@ -106,12 +104,13 @@
                 </ul>
             </pre>
         </div>
-
+        <code>4問目
+            1~40までの数字を出力し、
+            1の位が3の時に、「アホになる」を出力してください。
+            また、可能であれば、10の位が3の時にもアホになってください。
+        </code>
         <div class="code-frame" data-lang="text">
             <pre>
-                1~40までの数字を出力し、
-                1の位が3の時に、「アホになる」を出力してください。
-                また、可能であれば、10の位が3の時にもアホになってください。
                 <ul class="list">
                     <li v-for="list in listlabel" class="list-item">
                       <div v-bind:class="{active:active===list}" @click="dropdown(list)">{{list}}</div>
@@ -132,19 +131,68 @@
 
         <div class="code-frame" data-lang="text">
             <pre>
-                dataを作成
-                datas = {'id':10,'name':'yamada','age':'20','experience':'7','subordinate':['honda','nakano','hamada']}
+                以下のdataを作成してください
+                data = [
+                    {'id':10,'name':'yamada','age':'30','experience':'7','subordinate':['honda','nakano','hamada','yamamoto']},
+                    {'id':12,'name':'yamamoto','age':'22','experience':'5','subordinate':['kondo','nakajima','kojima','hamada']}
+                    {'id':21,'name':'nishida','age':'21','experience':'2','subordinate':['fujita','hamada']}
+                ]
             </pre>
         </div>
+        <code>
+            5問目
+            yamamotoさんの部下を出力してください。
+        </code>
+        <br>
+        <code>
+            6問目
+            3人の共通の部下を探して出力してください。
+            出力結果：hamadaさんが重複しています。
+        </code>
 
         <div class="code-frame" data-lang="text">
             <pre>
-                閏年を考える問題
-                関数 leap_year()を作成
-                引数に西暦の数字を入れて、
-                西暦が出力されるようにしてください。
-                ただし、閏年の時だけ「閏年です」と出力されるようにしてください。
+                <ul class="list">
+                    <li v-for="list in listlabel" class="list-item">
+                      <div v-bind:class="{active:active===list}" @click="dropdown(list)">{{list}}</div>
+                      <ul v-if="active===list">
+                    5問目 解答：
+                    data[1]['name']
+                        </ul>
+                    </li>
+                </ul>
+            </pre>
+        </div>
+        <div class="code-frame" data-lang="text">
+            <pre>
+                <ul class="list">
+                    <li v-for="list in listlabel" class="list-item">
+                      <div v-bind:class="{active:active===list}" @click="dropdown(list)">{{list}}</div>
+                      <ul v-if="active===list">
+                    6問目 解答：作成中
+                    dup = []
+                    dup = data[0]['subordinate']
+                    for i in data:
+                      for j in i['subordinate']:
+                        dup.push(j)
+                        </ul>
+                    </li>
+                </ul>
+            </pre>
+        </div>
+        <br>
+        <br>
+        <code>
+            閏年を考える問題
+            関数 leap_year()を作成
+            引数に西暦の数字を入れて、
+            西暦が出力されるようにしてください。
+            ただし、閏年の時だけ「閏年です」と出力されるようにしてください。
+        </code>
 
+
+        <div class="code-frame" data-lang="text">
+            <pre>
                 <ul class="list">
                     <li v-for="list in listlabel" class="list-item">
                       <div v-bind:class="{active:active===list}" @click="dropdown(list)">{{list}}</div>
@@ -162,7 +210,6 @@
                 </ul>
             </pre>
         </div>
-
-
             
     </div>  
+</body>

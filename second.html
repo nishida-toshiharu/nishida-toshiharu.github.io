@@ -11,87 +11,374 @@
     <script src="vue-scroll.js" defer></script>
 </head>
 <body>
-    <div class="code-frame" data-lang="text">
-        <pre>
-            pd.read_excel(import_file_path, sheet_name = data_sheet_list)
-            df_excel = openpyxl.load_workbook(import_file_path)
-            df_sheet = df_excel[data_sheet_list] ## Worksheet 'list'> Worksheet 
-            df_list = []
-            for row in df_sheet.iter_rows(max_row=9):  ## rowの中身(&lt;Cell 'list'.A1>, &lt;Cell 'list'.B1>, &lt;Cell 'list'.C1>, &lt;Cell 'list'.D1>)(&lt;Cell 'list'.A2>, &lt;Cell 'list'.B2>, &lt;Cell 'list'.C2>, &lt;Cell 'list'.D2>)
+    <div id="app">
+        sampledata1.xlsxを読み込んで、listの中にdictがある形に変形している
+        <div class="code-frame" data-lang="text">
+            <pre>
+                import_file_path = '/content/drive/MyDrive/Colab Notebook/sampledata1.xlsx'
+                pd.read_excel(import_file_path, sheet_name = data_sheet_list)
+                df_excel = openpyxl.load_workbook(import_file_path)
+                df_sheet = df_excel[data_sheet_list]
+                df_list = []
+                for row in df_sheet.iter_rows(max_row=9):  ## rowの中身(&lt;Cell 'list'.A1>, &lt;Cell 'list'.B1>, &lt;Cell 'list'.C1>, &lt;Cell 'list'.D1>)(&lt;Cell 'list'.A2>, &lt;Cell 'list'.B2>, &lt;Cell 'list'.C2>, &lt;Cell 'list'.D2>)
+                
+                    if row[0].row == 1:
+                        header_cells = row
+                    else:
+                        row_dic = {}
+                        for k, v in zip(header_cells, row):
+                        row_dic[k.value] = v.value
+                        df_list.append(row_dic)
+                print(df_list)
+
+                => [{'experience': 7.0, 'id': 0.0, 'name': '中上剛', 'skill': 'フロントエンド'},
+                {'experience': 5.0, 'id': 1.0, 'name': '千田渚', 'skill': 'フロントエンド'},
+                {'experience': 3.0, 'id': 2.0, 'name': '村山茄奈依', 'skill': 'フロントエンド'},
+                {'experience': 7.0, 'id': 3.0, 'name': '助川薫', 'skill': 'バックエンド'},
+                {'experience': 5.0, 'id': 4.0, 'name': '比志秀太郎', 'skill': 'VBA'},
+                {'experience': 2.0, 'id': 5.0, 'name': '西田俊陽', 'skill': 'バックエンド'},
+                {'experience': 10.0, 'id': 6.0, 'name': '松島浩二', 'skill': 'バックエンド'},
+                {'experience': 7.0, 'id': 7.0, 'name': '西山友也', 'skill': 'フロントエンド'}]
+            </pre>
+        </div>
+        <div class="code-frame" data-lang="text">
+            上のコードの説明。
+            <pre>
+                for row in df_sheet.iter_rows(max_row=9):  # デフォで1から開始 今回は9まで 計1~8まで
+                # print(row[0]) # headerの情報
+                if row[0].row == 1: # 1番上のheaderの情報
+                    header_cells = row
+                else: #header以外の情報
+                    row_dic = {}
+                    for k, v in zip(header_cells, row):
+                    # print(v.value) #kはA1~D1のheader vはA2~D9のそれぞれの値
+                    row_dic[k.value] = v.value   #v.valueで各々のcellの値を取得することが可能 k.valueはid,name,skill,experience
+                    # print(row_dic)
+                    # row_dic['id'] = 1
+                    # row_dic['name'] ='中上剛'  が行われている
+                    df_list.append(row_dic)
+                    # print("aaaa")
+
+                    # df_list = [{'id': 0.0, 'name': '中上剛', 'skill': 'フロントエンド', 'experience': 7.0}]
+                    list = [{'id': 0.0, 'name': '中上剛', 'skill': 'フロントエンド', 'experience': 7.0},{'id': 1.0, 'name': '千田渚', 'skill': 'フロントエンド', 'experience': 5.0}]
+                print(list[0]['name'])
+            </pre>
+        </div>
+            <a href="https://python.civic-apps.com/zip-enumerate/">zip関数について</a>
+        <div>
+            フローチャートを理解して、実際に書いてもらう
+            参考url: https://ferret-plus.com/7102
+
+            プログラムを書く際に、pythonのコードではなく、
+            プログラミングを知らない人でも理解ができるようにコードの内容を図式化したもの
+
+            これが描けるようになることで、仕様の確認ができたりする。
+            コードを書くまえに、preコードを書くみたいな感覚
+
+            細かく書いていくと分解する処理、分解する考え方が身に付けられて
+            論理的思考が身に付く。
+
+            素振りはこうやって、ブンってやるんだ
+            素振りは、グリップを左手で優しく握り、体重は左足を前にかけて...
+            後者がわかりやすいですよね。
+
+            あくまで、お客さんのところに行って、完成品を出せないと意味がない。
+            ので、完成品まで作っていただきたい。
+            日常のことでもいいし、仕事のことでもいいし。
+
+            ゴールは決まっているが、過程は正直なんでもいい->過程はたくさんあって、
+            今回の講習は自己流です。
+            目的地にたどりつくためには、
+            歩いてもいいし、走ってもいいし、タクシーを使ってもいいし。
+            方法や過程はいくらでもあるから、それを表現してあげるのが大事。
+            自分なり
+
+            <pre>
+                例）
+                寿司を握る時のフローチャート
+                <img src="https://ferret.akamaized.net/images/591982bafafbd87def0007f2/original.png?1494844086">
+            </pre>
+
+            自販機の例を出して、
+            自動レジのフローを作ってもらう
+            もしくは、自分の朝起きてからの活動をフローにしてもいいかもしれない
+            フローのspred上での作り方<br>
             
-                if row[0].row == 1:
+            <a href="https://kodomo-mirai-algo.hatenablog.jp/entry/2019/08/09/Google_%E3%82%B9%E3%83%97%E3%83%AC%E3%83%83%E3%83%89%E3%82%B7%E3%83%BC%E3%83%88%E3%81%A7%E3%83%95%E3%83%AD%E3%83%BC%E3%83%81%E3%83%A3%E3%83%BC%E3%83%88%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99">gcでのフローチャートの書き方説明</a>
+
+            fizzbuzz問題を解いてもらう
+            それをフローチャートに落とし込んでもらう<br>
+<a href="http://beyondbb.jp/Materials/%E7%94%9F%E5%BE%92%E7%94%A813_VendingMachine_140428.pdf">自販機の主な一例</a>
+            
+            自販機のサンプル(これは、講習では触れないので参考程度に)
+        </div>
+
+        ここから、gc(google spread sheet)をいじります。
+        excel講習参加フォームを使って、データを読み込んだり
+        tabごとの振り分け処理や、
+        別のfileに書き込むなど
+        <div class="code-frame" data-lang="text">
+            <pre>
+                from pydrive.auth import GoogleAuth
+                from pydrive.drive import GoogleDrive
+                from google.colab import auth
+                from oauth2client.client import GoogleCredentials
+                import gspread
+                auth.authenticate_user()
+                gauth = GoogleAuth()
+                gauth.credentials = GoogleCredentials.get_application_default()
+                drive = GoogleDrive(gauth)
+                gc = gspread.authorize(GoogleCredentials.get_application_default())
+
+                shtText = 'テストシート'
+                shtCategory = 'タイムスタンプ'
+                sht = gc.open('Excel講習参加フォーム（回答） のコピー')
+
+                worksheet = sht.get_worksheet(0)
+            </pre>
+        </div>
+        <div class="code-frame" data-lang="text">
+            <pre>
+                row_cnt = 27  #row_countの略
+                col_cnt = 6
+                cells = worksheet.range(1,1,row_cnt,col_cnt)
+                table_data = []
+                cols = []
+
+                for i,cell in enumerate(cells):
+                cols.append(cell.value)
+                if(i+1) % col_cnt == 0:
+                    table_data.append(cols)
+                    cols = []
+                table_data
+            </pre>
+            結果：
+            [['タイムスタンプ',
+            '参加者氏名（所属と名前を記載してください）',
+            '参加可能時間帯',
+            '講習参加回数（Excel講習会）',
+            'Excel講習会で希望する内容はありますか？',
+            'その他質問'],
+            ['5/7/2020 16:27:46',
+            'OCR なかがみてすと',
+            '11:00~19:00',
+            '0',
+            'VBAってなんやねん！',
+            'ちゃんとおくれるかな？'],........]
+        </div>
+
+        <div class="code-frame" data-lang="text">
+            <pre>
+
+                df_list = []
+                for i,row in enumerate(table_data):
+                if i == 0:
                     header_cells = row
                 else:
                     row_dic = {}
                     for k, v in zip(header_cells, row):
-                    row_dic[k.value] = v.value
-                    print(v.value)
+                        row_dic[k] = v
                     df_list.append(row_dic)
-            print(df_list)
-
-            => [{'experience': 7.0, 'id': 0.0, 'name': '中上剛', 'skill': 'フロントエンド'},
-            {'experience': 5.0, 'id': 1.0, 'name': '千田渚', 'skill': 'フロントエンド'},
-            {'experience': 3.0, 'id': 2.0, 'name': '村山茄奈依', 'skill': 'フロントエンド'},
-            {'experience': 7.0, 'id': 3.0, 'name': '助川薫', 'skill': 'バックエンド'},
-            {'experience': 5.0, 'id': 4.0, 'name': '比志秀太郎', 'skill': 'VBA'},
-            {'experience': 2.0, 'id': 5.0, 'name': '西田俊陽', 'skill': 'バックエンド'},
-            {'experience': 10.0, 'id': 6.0, 'name': '松島浩二', 'skill': 'バックエンド'},
-            {'experience': 7.0, 'id': 7.0, 'name': '西山友也', 'skill': 'フロントエンド'}]
-        </pre>
-    </div>
-    <div class="code-frame" data-lang="text">
-        <pre>
-            for row in df_sheet.iter_rows(max_row=9):  # デフォで1から開始 今回は9まで 計1~8まで
-            # print(row[0]) # headerの情報
-            if row[0].row == 1: # 1番上のheaderの情報
-                header_cells = row
-            else: #header以外の情報
-                row_dic = {}
-                for k, v in zip(header_cells, row):
-                # print(v.value) #kはA1~D1のheader vはA2~D9のそれぞれの値
-                row_dic[k.value] = v.value   #v.valueで各々のcellの値を取得することが可能 k.valueはid,name,skill,experience
-                # print(row_dic)
-                # row_dic['id'] = 1
-                # row_dic['name'] ='中上剛'  が行われている
-                df_list.append(row_dic)
-                # print("aaaa")
-
-                # df_list = [{'id': 0.0, 'name': '中上剛', 'skill': 'フロントエンド', 'experience': 7.0}]
-                list = [{'id': 0.0, 'name': '中上剛', 'skill': 'フロントエンド', 'experience': 7.0},{'id': 1.0, 'name': '千田渚', 'skill': 'フロントエンド', 'experience': 5.0}]
-            print(list[0]['name'])
-        </pre>
+                df_list
+            </pre>  
+            結果：
+            [{'Excel講習会で希望する内容はありますか？': 'VBAってなんやねん！',
+            'その他質問': 'ちゃんとおくれるかな？',
+            'タイムスタンプ': '5/7/2020 16:27:46',
+            '参加可能時間帯': '11:00~19:00',
+            '参加者氏名（所属と名前を記載してください）': 'OCR なかがみてすと',
+            '講習参加回数（Excel講習会）': '0'},
+            {'Excel講習会で希望する内容はありますか？': 'ほぼ初心者に等しいです。横文字が苦手なのでその都度解説して頂けると助かります。',
+            'その他質問': '長文になりそうなので、Gmailの方で質問させてください。',
+            'タイムスタンプ': '5/8/2020 11:46:19',
+            '参加可能時間帯': '11:00~19:00',
+            '参加者氏名（所属と名前を記載してください）': 'OCY\u3000田島',
+            '講習参加回数（Excel講習会）': '0'},.........]
         </div>
-        <a href="https://python.civic-apps.com/zip-enumerate/">zip関数について</a>
-    </div>
-    <div>
-        フローチャート
-        参考url: https://ferret-plus.com/7102
+        <div class="code-frame" data-lang="text">
+            <pre>
+                worksheet2 = gc.open('テストシート').get_worksheet(0)
+                worksheet2.update_acell('A3','こんにちわ')
+            </pre>
+            update_acellを使うことで、対象のcellを編集することが可能になる
+            
+        </div>
+        <br>
+        <div class="code-frame" data-lang="text">
+            問題1
+                テストシートのシート1上で、
+                A欄に氏名 B欄に参加可能時間帯
+                全員分表示しなさい
+                <ul class="list">
+                    <li v-for="list in listlabel" class="list-item">
+                        <div v-bind:class="{active:active===list}" @click="dropdown(list)">{{list}}</div>
+                        <ul v-if="active===list">
+                            for i,j in enumerate(df_list):<br>
+                            worksheet2.update_acell('A'+str(i+1),j['参加者氏名（所属と名前を記載してください）'])<br>
+                            worksheet2.update_acell('B'+str(i+1),j['参加可能時間帯'])
+                        </ul>
+                    </li>
+                </ul>
+        </div>
+        <div class="code-frame" data-lang="text">
+            問題2
+            テストシートのシート2に
+            「Excel講習会で希望する内容はありますか？」 の書き込みがある人だけ抜き出して
+            A欄に名前、B欄にExcel講習会で希望する内容はありますか？の内容を出力してください
+                <ul class="list">
+                    <li v-for="list in listlabel" class="list-item">
+                        <div v-bind:class="{active:active===list}" @click="dropdown(list)">{{list}}</div>
+                        <ul v-if="active===list">
+                            <pre>
+                            num = 1
+                            for j in df_list:<br>
+                            if j['Excel講習会で希望する内容はありますか？'] != '' :<br>
+                            num+=1<br>
+                            worksheet2.update_acell('A'+str(num),j['参加者氏名（所属と名前を記載してください）'])<br>
+                            worksheet2.update_acell('B'+str(num),j['Excel講習会で希望する内容はありますか？'])
+                            </pre>
+                            
+                            <pre>
+                            <br>
+                            (別解)
+                            num = 1
+                            for j in df_list:<br>
+                            if len(str(j['Excel講習会で希望する内容はありますか？'])) > 0:<br>
+                            worksheet2.update_acell('A'+str(num),j['参加者氏名（所属と名前を記載してください）'])
+                            worksheet2.update_acell('B'+str(num),j['Excel講習会で希望する内容はありますか？'])
+                            num = num + 1
+                            </pre>
+                                
+                            </ul>
+                        </li>
+                </ul>
+        </div>
+        <div class="code-frame" data-lang="text">
+            問題3
+                テストシートのシートを3つ使います。
+                講習参加回数（Excel講習会）の回数を判別し<br>
+                シート1には0回の人<br>
+                シート2には1回の人<br>
+                シート3には、それ以外の人<br>
+                名前、講習参加回数（Excel講習会）
+                を出力してください。
+                <ul class="list">
+                    <li v-for="list in listlabel" class="list-item">
+                        <div v-bind:class="{active:active===list}" @click="dropdown(list)">{{list}}</div>
+                        <ul v-if="active===list">
+                            <pre>
+                                worksheet2 = gc.open('テストシート').get_worksheet(0)
+                                worksheet3 = gc.open('テストシート').get_worksheet(1)
+                                worksheet4 = gc.open('テストシート').get_worksheet(2)
+                                s1 = 1
+                                s2 = 1
+                                s3 = 1
+                                for i,j in enumerate(df_list):
+                                setValue = j
+                                if (j['講習参加回数（Excel講習会）'] == '0'):
+                                worksheet2.update_acell('A'+str(s1+1), setValue['参加者氏名（所属と名前を記載してください）'])
+                                worksheet2.update_acell('B'+str(s1+1), setValue['参加可能時間帯'])
+                                s1+=1
+                                elif (j['講習参加回数（Excel講習会）'] == '1'):
+                                worksheet3.update_acell('A'+str(s2+1), setValue['参加者氏名（所属と名前を記載してください）'])
+                                worksheet3.update_acell('B'+str(s2+1), setValue['参加可能時間帯'])
+                                s2+=1
+                                else:
+                                worksheet4.update_acell('A'+str(s3+1), setValue['参加者氏名（所属と名前を記載してください）'])
+                                worksheet4.update_acell('B'+str(s3+1), setValue['参加可能時間帯'])
+                                s3+=1
+                            </pre>
+                        </ul>
+                    </li>
+                </ul>
+        </div>
+        <div class="code-frame" data-lang="text">
+            Flagを使って、フラグ判別を行う。
+            0と1
+            TrueとFalse
+            DBにも使われており、権限や削除フラグで使用されたりする<br>
+            https://note.nkmk.me/python-bool-true-false-usage/ <br>
 
-        プログラムを書く際に、pythonのコードではなく、
-        プログラミングを知らない人でも理解ができるようにコードの内容を図式化したもの
+            1回だけしか行わない処理<br>
+            <pre>
+                flg = False
+                for i,j in enumerate(df_list):
+                if flg == False:
+                worksheet2.update_acell('A'+str(i+2),j['参加者氏名（所属と名前を記載してください）'])
+                worksheet2.update_acell('B'+str(i+2),j['参加可能時間帯'])
+                flg = True
+            </pre>
 
-        これが描けるようになることで、仕様の確認ができたりする。
-        コードを書くまえに、preコードを書くみたいな感覚
+            宿題：
+            この処理はforで回っているので、全ての処理が行われます。
+            今回は、Flag判別を使って、
+            1回だけ各々の処理を実行するようにしてください。<br>
+            <pre>
 
-        細かく書いていくと分解する処理、分解する考え方が身に付けられて
-        論理的思考が身に付く。
+            work_sheet1 = gc.open('テストシート').get_worksheet(0)<br>
+            work_sheet2 = gc.open('テストシート').get_worksheet(1)<br>
+            work_sheet3 = gc.open('テストシート').get_worksheet(2)<br>
+            flg1 = True<br>
+            flg2 = True<br>
+            flg3 = True<br>
+            k1 = 1<br>
+            k2 = 1<br>
+            k3 = 1<br>
 
-        素振りはこうやって、ブンってやるんだ
-        素振りは、グリップを左手で優しく握り、体重は左足を前にかけて...
-        後者がわかりやすいですよね。
+            for i,j in enumerate(df_list):<br>
+            setValue = j<br>
+            if setValue['講習参加回数（Excel講習会）'] == '0':<br>
+                if flg1 == True:<br>
+                work_sheet1.update_acell('A' + str(k1), setValue['参加者氏名（所属と名前を記載してください）'])<br>
+                work_sheet1.update_acell('B' + str(k1), setValue['参加可能時間帯'])<br>
+                k1 = k1 + 1<br>
+                flg1 = False<br>
+            elif setValue['講習参加回数（Excel講習会）'] == '1':<br>
+                if flg2 == True:<br>
+                work_sheet2.update_acell('A' + str(k2), setValue['参加者氏名（所属と名前を記載してください）'])<br>
+                work_sheet2.update_acell('B' + str(k2), setValue['参加可能時間帯'])<br>
+                k2 = k2 + 1<br>
+                flg2 = False<br>
+            else:<br>
+                if flg3 == True:<br>
+                work_sheet3.update_acell('A' + str(k3), setValue['参加者氏名（所属と名前を記載してください）'])<br>
+                work_sheet3.update_acell('B' + str(k3), setValue['参加可能時間帯'])<br>
+                k3 = k3 + 1<br>
+                flg3 = False
+            </pre>
+        </div>
 
-        
-        <pre>
-            例）
-            寿司を握る時のフローチャート
-            <img src="https://ferret.akamaized.net/images/591982bafafbd87def0007f2/original.png?1494844086">
-        </pre>
+        <a href="/practice.html">練習問題へ</a>
+        <a href="/third.html">3へいこう</a>
 
-        自販機の例を出して、
-        自動レジのフローを作ってもらう
-        もしくは、自分の朝起きてからの活動をフローにしてもいいかもしれない
-        フローのspred上での作り方
-        https://kodomo-mirai-algo.hatenablog.jp/entry/2019/08/09/Google_%E3%82%B9%E3%83%97%E3%83%AC%E3%83%83%E3%83%89%E3%82%B7%E3%83%BC%E3%83%88%E3%81%A7%E3%83%95%E3%83%AD%E3%83%BC%E3%83%81%E3%83%A3%E3%83%BC%E3%83%88%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99
+        この辺からは、初回の復習などを行うといいかもしれない。初回の振り返りを行って、最初わからなかった部分がわかるようになってればok。
+        まず、これまで行ったこと。
+        pythonの基礎<br>
+        excelのdata取得、file振り分け<br>
+        excel(sampledata1)から、データ取得、listとdictに変換する<br>
+        gcでexcel講習参加formを使って、データ取得、tabごとにデータを振り分け
+        ---------------------
+        gcでtabごとにデータを振り分けたりしましたが、excelでも同様のことができると思うのでやってみる。
+        逆に、excelで株式会社Aだけのfileを作成したものをgcでやってみるなど
+
+        それが終われば、scrapingや
+        最終問題で、gc excelの振り分け処理を行っていただく形になります。
+
+        自分でsample1みたいなfileを作成する。(どっかから持ってくる)
+        skillシートから情報を取得して表示させるなど。
+
+        月末調整を使うとか。
+        月末調整の平日出勤日(月~金)だけを取得し、
+        日にち、所定勤務時間をsheet1に出力 ただし、状態が何かあるものは覗く
+        状態が何かしらの場合sheet2に出力(日にち、所定勤務時間、開始終了時間、状態、備考)
+        sheet1には平日の状態が何もない平和な情報
+        sheet2には平日の状態がある日の情報
+        sheet3には電車賃の合計を出力し、日にちと、用件を出す。
+
+        folderの中に入っている月末調整を全て取得し、人毎に
+        状態が何かしらある場合出力。
+        電車賃も計算して出す。
+        それを1枚のgcにまとめる。(これができれば、イレギュラーの人、日付だけを抽出できるので管理が楽になったりしませんかね？)
     </div>
 </body>
-</html> 
+</html>
