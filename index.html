@@ -105,23 +105,6 @@
                     workbook.save(export_file_path + '/' + '管理シート.xlsx')
                 </pre>
             </div>
-            型の変換
-            <div class="code-frame" data-lang="text">
-                <pre>
-                    str()  #strに変換
-                    int()  #intに変換
-
-                    #型の連結
-                    name + str(id)
-                </pre>
-            </div>
-        </div>
-        <div class="code-frame" data-lang="text">
-                <pre>
-                    name = 'python君'
-                    id = 2
-                    print(name+str(2))
-                </pre>
         </div>
         
 
@@ -129,13 +112,23 @@
             {{second}}
             <div class="code-frame" data-lang="text">
                 <pre>
+                    x = 1
+                    y = 2    #「変数名 = 変数に入れる値」で変数が定義できる。
+                    
+                    
                     name = 'yamada'  文字列型、str
                     id = 2           整数型、int
                     point = 1.3      浮動小数点型、float
+
+                    #変数名は、理解可能なものを使い、値には変数名に応じたデータを入れること。
+                    NG例)
+                    name = '2021/04/14'
+                    date = '山田太郎'
                 </pre>
             </div>
-            型の変換
+            型の変換 型の連結
             <div class="code-frame" data-lang="text">
+                同じ型同士でなければ、足し算(連結)ができない
                 <pre>
                     str()  #strに変換
                     int()  #intに変換
@@ -143,20 +136,24 @@
                     #型の連結
                     name + str(id)
                 </pre>
-                <pre>
-                    '<span class="box">箱の中身</span>'
-                </pre>
-                講義内では、シングルクォーテーションを推奨
-                htmlとのやりとりの上で、混在してしまう可能性があるから
-                HTMLの属性値を「"(ダブルクォート)」で囲むことを推奨している。
-                そこで、pythonではシングルをかけば混在しない。
+                    &lt;span class="box"&gt;箱の中身&lt;/span&gt;
+                    HTMLの属性値(class名など)を「"(ダブルクォート)」で囲むことを推奨している。
+                    htmlとのやりとりの上で、混在してしまう可能性があるから
+                    pythonでは、混同しない様に''で書くことを推奨します。
+                    <br>
+                    <br>
+                    "&lt;span class="box"&gt;箱の中身&lt;/span&gt;"
+                    を行うとエラーになったりするので。<br>
 
                 関数：
                 何かを入れると何かが出てくる 仕組み
-                print()
-                type()
+                #変数の中身をみたい場合には、print()を
+                #変数の型を確認したい場合には、type()を
                 もう一つ、
-                pd.read_excel() の様なパターン
+                pd.read_excel() の様なパターンも存在する。
+                pandas classの関数を使う場合に使用する。
+
+                pandasという機能全体の中にある、一機能read_excel()を使う際にこういった書き方をする。
             </div>
         </div>
         
