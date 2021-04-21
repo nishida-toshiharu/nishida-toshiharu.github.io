@@ -5,6 +5,9 @@ ul {
 li{
     list-style-type:none;
 }
+table, td, th {
+    border: 2px #808080 solid;
+    }
 code{
     background-color: #eee;
 }
