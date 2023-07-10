@@ -12,7 +12,7 @@ print(x)
 </details>
 
 ⭐️    
-1. 変数xに整数型の数値を代入し、変数yに別の整数型の数値を代入し、xとyの足し算をして結果をprintしてください
+2.変数xに整数型の数値を代入し、変数yに別の整数型の数値を代入し、xとyの足し算をして結果をprintしてください
 <details>
 <summary>A.</summary>
 
@@ -24,7 +24,7 @@ print( x + y )
 </details>
 
 ⭐️    
-1. 整数型の変数num1に5を代入、浮動小数点型の変数num2に2.5を代入し、その二つの変数を足した結果を出力するプログラムを作成してください
+3. 整数型の変数num1に5を代入、浮動小数点型の変数num2に2.5を代入し、その二つの変数を足した結果を出力するプログラムを作成してください
 <details>
 <summary>A.</summary>
 
@@ -98,7 +98,7 @@ print( di )
 </details>
 
 ⭐️⭐️    
-9.keyにa,b,c valueに整数型の1,2,3が入っているディクトを作成し、その後メソッドを用いて、要素を(d:4)追加しprintで出力してください
+9.keyにa,b,c valueに整数型の1,2,3が入っているディクトを作成し、その後メソッドを用いて、{d:4}の要素を追加しprintで出力してください
 <details>
 <summary>A.</summary>
 
@@ -109,11 +109,31 @@ print( di )
 ```
 </details>
 
+⭐️⭐️⭐️ 
+10.keyにID,name,ageを持つdictを作成してください。 valueは自由です。
+そのdictにsex(性別)を追加してください。
+さらに、もう一人keyにID,name,age,sexを持つdictを作成してください。
 
+2つのdictが作られましたね？
+では、1つのオブジェクト(塊)にするにはどうすればいいでしょうか？
+
+<details>
+<summary>A.</summary>
+
+```
+d = {"ID":1,"name":"john","age":22}
+d["sex"] = 1
+d
+d2 = {"ID":2,"name":"john","age":21}
+d2
+
+l = [d,d2]
+```
+</details>
 
 ⭐️⭐️⭐️    
 10.keyにid,name,age valueに100,自分の名前,自分の年齢が入っているディクトを作成
-familyのリストを作成し、自分の家族を二人入れてください
+familyのリストを作成し、父と母の二人を入れてください
 
 familyをdictに追加し、二人目のfamilyの名前を出力してください
 <details>
